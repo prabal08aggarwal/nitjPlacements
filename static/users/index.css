@@ -1,0 +1,31 @@
+
+.mainContent{
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.formClass{
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.type {
+    animation: typing 3s steps(22);
+    overflow: hidden;
+    white-space: nowrap;
+}
+@keyframes typing{
+    0% {
+        width: 0ch;
+    }
+
+    100% {
+        width: 22ch;
+    }
+}
+
+li:hover{
+    color: aquamarine;
+}

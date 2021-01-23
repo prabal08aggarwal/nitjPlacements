@@ -1,0 +1,55 @@
+{% extends "users/base.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block headBlock %}
+    <link rel="stylesheet" href="{% static 'users/index.css' %}">
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+
+
+<div class = 'mainContent'>
+        <div class="row">
+            <div class="col-6">
+                <h1 class = 'type'>NitJ Placements Portal</h1>
+                
+                <h2>Features</h2>
+                <ul>
+                    <li> Apply to companies </li>
+                    <li> Read and Learn from Past Experience </li>
+                    <li> Post Queries </li>
+                    <li> Solve Doubts </li>
+                    <li> Get Notified </li>
+                  
+                </ul>
+            </div>
+
+            <div class="col-6 formClass">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                        <button type="submit">
+                            Sign Up
+                        </button>
+            
+                </form>
+                <div>
+                    <small>
+                        Already Have an Account?
+                        <a href="#"> Sign In</a>
+                    </small>
+                </div>
+            
+            </div>
+
+        </div>
+</div>
+   
+
+    
+{% endblock bodyBlock %}
