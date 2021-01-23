@@ -1,13 +1,13 @@
 # nitjplacements.com
 
 * start virtual environment 
-source env/bin/activate
+<pre>   source env/bin/activate  </pre>
 
 * deactivate virtual environment
-deactivate
+<pre>   deactivate  </pre>
 
 * Update requirements.txt
-pip freeze > requirements.txt
+<pre>   pip freeze > requirements.txt  </pre>
 
 * Install All dependencies
-pip install -r requirements.txt
+<pre>   pip install -r requirements.txt  </pre>
