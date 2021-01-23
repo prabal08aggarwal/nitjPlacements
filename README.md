@@ -2,16 +2,16 @@
 
 ## Basic Commands
 * Start virtual environment 
-<pre>   source env/bin/activate  </pre>
+<pre> source env/bin/activate  </pre>
 
 * Deactivate virtual environment
 <pre> deactivate  </pre>
 
 * Update requirements.txt
-<pre>   pip freeze > requirements.txt  </pre>
+<pre> pip freeze > requirements.txt  </pre>
 
 * Install All dependencies
-<pre>   pip install -r requirements.txt  </pre>
+<pre> pip install -r requirements.txt  </pre>
 
 <br>
 <hr>
@@ -24,8 +24,7 @@
 
 * Start new app 
 <pre> python manage.py startapp appName  </pre>
-
-<pre>Also install your app in nitjplacements->settings </pre>
+Also install your app in nitjplacements->settings
 
 <br>
 <hr>
@@ -34,24 +33,24 @@
 ## App Description / Folder Description
 
 ### nitjplacements
-<pre>This is the main app of our project</pre>
+<pre> This is the main app of our project</pre>
 
 ### users
-<pre>Manages login/logout, Homepage functionality</pre>
+<pre> Manages login/logout, Homepage functionality</pre>
 
 ### interviewExperience
-<pre>Manages interview Experience functionality</pre>
+<pre> Manages interview Experience functionality</pre>
 
 ### placements
-<pre>Manages placements functionality</pre>
+<pre> Manages placements functionality</pre>
 
 ### qAndA
-<pre>Manages question and answer functionality</pre>
+<pre> Manages question and answer functionality</pre>
 
 ### static
-<pre>Manages static files (css and javaScript)</pre>
+<pre> Manages static files (css and javaScript)</pre>
 
 ### templates
-<pre>Manages html files</pre>  
+<pre> Manages html files</pre>  
 
 
