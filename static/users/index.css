@@ -30,3 +30,10 @@
 li:hover{
     color: aquamarine;
 }
+
+.dull{
+    background-color: #FCFCFF;
+}
+.purewhite{
+    background-color: #FFFFFF;
+}
