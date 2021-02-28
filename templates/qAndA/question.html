@@ -1,34 +1,61 @@
-{% extends 'qAndA/layouts/page.html' %}
+{% extends "users/baseAuth.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-<div class="page question-page">
 
-<h2 class="question-title">{{question.title}}</h2>
-<p class="question-body">{{question.body}}</p>
-<span class="question-author">author : {{question.author.username}}</span>
 
-<div class="responses-container">
-  <h4 class="responses-container-heading">Responses</h4>
 
-  {% if not question.responses.all %}
+{% block headBlock %}
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+<div class="container">
+  <div class="page question-page">
+
+    <h2 class="question-title">{{question.title}}</h2>
+    <p class="question-body">{{question.body}}</p>
+    <span class="question-author">author : {{question.author.firstName}}</span>
+    
+    <div class="responses-container">
+      <h4 class="responses-container-heading">Responses</h4>
+    </div>
+    
+
+    {% if not question.responses.all %}
     <p class="no-responses-text">No responses yet</p>
   {% else %}
     {% for response in question.get_responses %}
-      {% include 'qAndA/components/response.html' with response=response %}
+      
+    <p class="response-body">{{response.body}}</p>
+    <small class="response-author">by {{response.user.username}}</small>
+  
+    
     {% endfor %}
   {% endif %}
+
+    <div class="container formClass col-lg-4 col-md-8">
+      <div class="row justify-content-center">
+          <div class="col-8 col-sm-12">
+              <form method="POST">
+                  {% csrf_token %}
+  
+                  {{ response_form|crispy }}
+                  <button class = "btn btn-outline-info mt-4" type="submit">
+                      Submit
+                  </button>
+  
+              </form>
+          </div>
+      </div>
+  </div>
+
+
 </div>
 
-{% if user.is_authenticated %}
-<form method="POST" action="" class="response-form">
-{% csrf_token %}
-<div class="fieldWrapper">
-  <label for="{{response_form.body.id_for_label}}">Your answer:</label>
-  {{response_form.body}}
-</div>
-<input type="submit" value="Send" class="submit-button"/>
-</form>
-{% endif %}
 
-</div>
-{% endblock %}
+{% endblock bodyBlock %}
+
+

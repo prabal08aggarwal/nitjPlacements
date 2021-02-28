@@ -31,9 +31,10 @@ def homePage(request):
     }
     return render(request, 'qAndA/homepage.html', context)
 
+@login_required
 def questionPage(request, id):
     response_form = NewResponseForm()
-    reply_form = NewReplyForm()
+    # reply_form = NewReplyForm()
 
     if request.method == 'POST':
         try:
@@ -43,7 +44,8 @@ def questionPage(request, id):
                 response.user = request.user.student
                 response.question = Question(id=id)
                 response.save()
-                return redirect('/question/'+str(id)+'#'+str(response.id))
+                #return redirect('questionPage')
+                #return redirect('qa/question/'+str(id))
         except Exception as e:
             print(e)
             raise
@@ -52,27 +54,8 @@ def questionPage(request, id):
     context = {
         'question': question,
         'response_form': response_form,
-        'reply_form': reply_form,
+        # 'reply_form': reply_form,
     }
     return render(request, 'qAndA/question.html', context)
 
 
-@login_required
-def replyPage(request):
-    if request.method == 'POST':
-        try:
-            form = NewReplyForm(request.POST)
-            if form.is_valid():
-                question_id = request.POST.get('question')
-                parent_id = request.POST.get('parent')
-                reply = form.save(commit=False)
-                reply.user = request.user.student
-                reply.question = Question(id=question_id)
-                reply.parent = Response(id=parent_id)
-                reply.save()
-                return redirect('/question/'+str(question_id)+'#'+str(reply.id))
-        except Exception as e:
-            print(e)
-            raise
-
-    return redirect('index')

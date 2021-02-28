@@ -1,20 +1,41 @@
-{% extends 'qAndA/layouts/page.html' %}
+{% extends "users/baseAuth.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-<div class="page">
-<h1 class="title">All questions</h1>
+
+
+
+{% block headBlock %}
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+
+
+
+<div class="container">
+  <h1>All questions</h1>
 
 {% for question in questions %}
-<div class="question-list-item">
-  <a href="{% url 'question' question.id %}">
-    <p class="question-list-item-title">
-      {{question.title}}
-    </p>
-    <p class="question-list-item-author">
-      by {{question.author.username}}
-    </p>
+  <div class="question-list-item">
+    <a href="{% url 'questionPage' question.id %}">
+      <p class="question-list-item-title">
+            {{question.title}}
+      </p>
+      <p class="question-list-item-author">
+            by {{question.author.firstName}}
+      </p>
   </a>
 </div>
 {% endfor %}
+
+
+    
 </div>
-{% endblock %}
+
+
+
+{% endblock bodyBlock %}
+
