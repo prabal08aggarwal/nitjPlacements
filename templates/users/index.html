@@ -5,7 +5,7 @@
 
 
 {% block headBlock %}
-    <link rel="stylesheet" href="{% static 'users/index.css' %}">
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
 {% endblock %}
 
 
@@ -13,43 +13,48 @@
 
 
 
-<div class = 'mainContent'>
-        <div class="row">
-            <div class="col-6">
-                <h1 class = 'type'>NitJ Placements Portal</h1>
-                
-                <h2>Features</h2>
-                <ul>
-                    <li> Apply to companies </li>
-                    <li> Read and Learn from Past Experience </li>
-                    <li> Post Queries </li>
-                    <li> Solve Doubts </li>
-                    <li> Get Notified </li>
-                  
-                </ul>
-            </div>
+<div class='mainContent'>
+    <div class="row justify-content-center">
 
-            <div class="col-6 formClass">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                        <button type="submit">
-                            Sign Up
-                        </button>
-            
-                </form>
-                <div>
-                    <small>
-                        Already Have an Account?
-                        <a href="#"> Sign In</a>
-                    </small>
-                </div>
-            
+        
+        <div class="col-lg-4 col-md-6">
+            <h1 class='type'>NitJ Placements Portal</h1>
+
+            <h2>Features</h2>
+            <ul>
+                <li> Apply to companies </li>
+                <li> Read and Learn from Past Experience </li>
+                <li> Post Queries </li>
+                <li> Solve Doubts </li>
+                <li> Get Notified </li>
+
+            </ul>
+        </div>
+
+
+
+
+        <div class="col-lg-4 col-md-6 formClass">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class = "btn btn-outline-info mt-4" type="submit">
+                    Login
+                </button>
+
+            </form>
+            <div class = "pt-3">
+                <small class = "text-muted">
+                    Need an Account
+                    <a href="{% url 'register' %}"> Sign Up</a>
+                </small>
             </div>
 
         </div>
-</div>
-   
 
-    
+    </div>
+</div>
+
+
+
 {% endblock bodyBlock %}
