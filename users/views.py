@@ -4,26 +4,39 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
+from users import forms
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save() # Save into database
+        form1 = UserCreationForm(request.POST)
+        form2 = forms.StudentForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            
+            firstName = form2.cleaned_data.get('firstName')
+            student = form2.save(commit = False)
+            user = form1.save(commit = False)
 
-            username = form.cleaned_data.get('username')
-            messages.success(request,f'Account created for {username}!')
+            student.user = user
+            user.save() # Save into database
+            student.save()
+            
+            messages.success(request,f'Account created for {firstName}!')
             return redirect('homePage')
     else:
-        form = UserRegisterForm()
+        form1 = UserCreationForm()
+        form2 = forms.StudentForm()
 
     context = {}
-    context['form'] = form
+    context['form1'] = form1
+    context['form2'] = form2
     return render(request,'users/register.html',context)
 
+
+
+#Auth views
 @login_required
 def profile(request):
     return render(request,'users/profile.html')

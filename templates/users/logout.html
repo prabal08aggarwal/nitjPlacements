@@ -1,5 +1,19 @@
-<html>
-    <body>
-        <h1>Logged Out</h1>
-    </body>
-</html>
+{% extends "users/base.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block headBlock %}
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class = "type text-center"> You Have Been Logged Out</h1>
+    </div>
+</div>
+{% endblock bodyBlock %}
