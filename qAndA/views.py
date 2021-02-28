@@ -17,6 +17,8 @@ def newQuestionPage(request):
                 
                 question.author = request.user.student
                 question.save()
+
+                return redirect('qAindex')
         except Exception as e:
             print(e)
             raise
