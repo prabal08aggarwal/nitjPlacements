@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import NewQuestionForm, NewReplyForm, NewResponseForm
+from .forms import NewQuestionForm, NewReplyForm, NewResponseForm, qFilter
 from django.contrib.auth.decorators import login_required
 from .models import Question, Response
 
 # Create your views here.
 
-@login_required(login_url='register')
+@login_required
 def newQuestionPage(request):
     form = NewQuestionForm()
 
@@ -26,10 +26,23 @@ def newQuestionPage(request):
     context = {'form': form}
     return render(request, 'qAndA/new-question.html', context)
 
+@login_required
 def homePage(request):
-    questions = Question.objects.all().order_by('-created_at')
+    form = qFilter
+    qs = Question.objects.all().order_by('-created_at')
+
+    title = request.GET.get('title')
+    authorName = request.GET.get('author')
+
+    if title is not None and title != '':
+        qs = qs.filter(title__icontains = title)
+
+    if authorName is not None and authorName != '':
+        qs = qs.filter(author__firstName__icontains = authorName)
+
     context = {
-        'questions': questions
+        'form':form,
+        'questions': qs
     }
     return render(request, 'qAndA/homepage.html', context)
 

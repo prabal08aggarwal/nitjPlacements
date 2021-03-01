@@ -29,3 +29,12 @@ class NewReplyForm(forms.ModelForm):
                 'placeholder': 'What are your thoughts?'
             })
         }
+
+class qFilter(forms.ModelForm):
+    author = forms.CharField(max_length = 100,required = False)
+    title = forms.CharField(max_length = 200,required = False)
+    
+    class Meta:
+
+        model = Question
+        fields = ['title','author']

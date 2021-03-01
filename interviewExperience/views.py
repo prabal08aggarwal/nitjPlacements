@@ -4,17 +4,33 @@ from .models import interviewExp
 from django.contrib.auth.decorators import login_required
 
 from .forms import newExp
+
+from .forms import filterForm
 # Create your views here.
 
 @login_required
 def index(request):
+    form = filterForm()
+    qs = interviewExp.objects.all()
+
+    company = request.GET.get('company')
+    authorName = request.GET.get('author')
+    
+    if company is not None and company != '':
+        qs = qs.filter(company__icontains = company)
+
+    if authorName is not None and authorName != '':
+        qs = qs.filter(author__firstName__icontains = authorName)
+
+   
     context = {
-        'interviewExp':interviewExp.objects.all()
+        'form':form,
+        'interviewExp':qs
     }
 
     return render(request,'interviewExperience/index.html',context)
 
-
+@login_required
 def newExpview(request):
     form = newExp()
 
