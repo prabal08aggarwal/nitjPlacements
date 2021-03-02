@@ -1,0 +1,60 @@
+{% extends "users/baseAuth.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block headBlock %}
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
+
+<style>
+    .right{
+        float: right;
+    }
+    .clearRight{
+        clear:right;
+    }
+</style>
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+<div class = "container mt-3">
+  <div class="row justify-content-center">
+      <a class="btn btn-outline-success" href="{% url 'applied'%}">
+        Check Companies You Have Applied To
+      </a>
+  </div>
+</div>
+
+
+<div class="container">
+{% for company in companies %}
+  <div class="question-list-item border border-2 border-dark mt-5 p-3">
+  
+    <p> 
+        {{ company.Name }}
+            {% if company.id in appliedTo%}
+            <button type="button" class="btn btn-outline-success right" disabled> Applied </button>
+            {% else %}
+            <a type="button" class="btn btn-outline-success right" name = "{{ company.id }}" href="{% url 'apply' company.id%}"> Apply </a>
+            {% endif%}
+      
+    </p>
+    <br class = "clearRight">
+    <hr>
+
+    <h3> {{ company.title }}</h3>
+
+    <p>
+        {{ company.JobDescription }}
+    </p>
+      
+  
+</div>
+{% endfor %} 
+</div>
+
+
+
+{% endblock bodyBlock %}
+

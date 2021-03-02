@@ -1,0 +1,46 @@
+{% extends "users/baseAuth.html"%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block headBlock %}
+<link rel="stylesheet" href="{% static 'users/index.css' %}">
+
+<style>
+    .right{
+        float: right;
+    }
+    .clearRight{
+        clear:right;
+    }
+</style>
+{% endblock %}
+
+
+{% block bodyBlock %}
+
+
+<div class="container">
+{% for company in companies %}
+{% if company.id in appliedTo%}
+  <div class="question-list-item border border-2 border-dark mt-5 p-3">
+    <p> 
+        {{ company.Name }}
+            <button type="button" class="btn btn-outline-success right" disabled> Applied </button>
+    </p>
+    <br class = "clearRight">
+    <hr>
+
+    <h3> {{ company.title }}</h3>
+
+    <p>
+        {{ company.JobDescription }}
+    </p>
+</div>
+{% endif %}
+{% endfor %} 
+</div>
+
+
+
+{% endblock bodyBlock %}
+

@@ -19,5 +19,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('interviews/', include('interviewExperience.urls')),
-    path('qa/',include('qAndA.urls'))
+    path('qa/',include('qAndA.urls')),
+    path('jobs/',include('placements.urls'))
 ]
