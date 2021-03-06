@@ -5,8 +5,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
 from users import forms
-
+from .forms import UploadFile
 from django.contrib.auth.decorators import login_required
+
+import os.path
 # Create your views here.
 
 def register(request):
@@ -35,8 +37,30 @@ def register(request):
     return render(request,'users/register.html',context)
 
 
+def handleUploadedFile(f,id):
+    with open('uploads/{}.pdf'.format(id), 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 #Auth views
 @login_required
 def profile(request):
-    return render(request,'users/profile.html')
+    path = 'uploads/{}.pdf'.format(request.user.id)
+    
+    if os.path.exists(path) == False:
+        path = None
+    else:
+        path = '{}.pdf'.format(request.user.id)
+    
+    form = UploadFile()
+    context = {
+        'form':form,
+        'path':path,
+    }
+    id = request.user.id
+    if request.method == 'POST':
+        handleUploadedFile(request.FILES['file'],id)
+        return redirect('profile')
+
+
+    return render(request,'users/profile.html',context)

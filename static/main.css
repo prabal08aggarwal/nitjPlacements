@@ -1,3 +1,20 @@
-.mgBg{
-    background-color: #F1F1F1;
+.myBg{
+    background-color:whitesmoke;
+    background-color: aquamarine;
+}
+.myWhite{
+    background-color:white;
+}
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+.clearRight{
+    clear:right;
+}
+.clearBoth{
+    clear: both;
 }

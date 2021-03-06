@@ -14,7 +14,7 @@
 
 <div class = "container mt-3">
   <div class="row justify-content-center">
-      <a class="btn btn-outline-success" href="{% url 'new-question'%}">
+      <a class="btn btn-outline-success myWhite" href="{% url 'new-question'%}">
         Add a Question
       </a>
   </div>
@@ -23,7 +23,7 @@
 
 <div class="container mt-3">
   <div class = "row justify-content-center p-3">
-    <div class = "border border-2 border-dark col-md-10">
+    <div class = "border border-2 border-dark col-md-10 myWhite">
       <h3>{{question.title}}</h3>
       <p>{{question.body}}</p>
       <small>author : {{question.author.firstName}}</small>
@@ -40,7 +40,7 @@
     <p class="mt-3">No Responses Yet</p>
     {% else %}
     {% for response in question.get_responses %}
-    <div class="border border-2 border-dark mt-3 p-3">
+    <div class="border border-2 border-dark mt-3 p-3 myWhite">
       <p>{{response.body}}</p>
       <small>by {{response.user.firstName}}</small>  
     </div>
@@ -51,7 +51,7 @@
   
 
   <div class = "row mt-3">
-    <div class="container formClass col-md-10">
+    <div class="container formClass col-md-10 myWhite">
       <div class="row justify-content-center">
         <div class="col-8 col-sm-12">
           <form method="POST">

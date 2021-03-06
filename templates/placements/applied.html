@@ -22,7 +22,7 @@
 <div class="container">
 {% for company in companies %}
 {% if company.id in appliedTo%}
-  <div class="question-list-item border border-2 border-dark mt-5 p-3">
+  <div class="question-list-item border border-2 border-dark mt-5 p-3 myWhite">
     <p> 
         {{ company.Name }}
             <button type="button" class="btn btn-outline-success right" disabled> Applied </button>

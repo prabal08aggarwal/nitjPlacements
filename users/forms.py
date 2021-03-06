@@ -16,3 +16,7 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = models.Student
         fields = ['firstName','lastName','email','ph_no']
+
+
+class UploadFile(forms.Form):
+    file = forms.FileField()
