@@ -13,18 +13,20 @@
 {% block bodyBlock %}
 <div class="container mt-3">
     <div class="row justify-content-center">
-        <h3 class = "type text-center"> Upload Your Resume</h3>
+        <h3 class = "type text-center"> Create Your Resume</h3>
     </div>
 </div>
-<div class="container formClass col-lg-4 col-md-8 mt-5 myWhite">
+
+
+<div class="container formClass col-lg-8 col-md-8 mt-5 myWhite">
     <div class="row justify-content-center">
         <div class="col-8 col-sm-12">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                {{ form|crispy }}
+                {{ resumeForm|crispy }}
                 <button class = "btn btn-outline-info mt-4 right" type="submit">
-                    Upload
+                    Submit
                 </button>
 
             </form>
@@ -32,16 +34,5 @@
     </div>
 </div>
 
-
-{% if path is not None %}
-<div class = "container mt-5">
-    <div class="row justify-content-center myWhite">
-        <a class="btn btn-outline-success" href="{% get_media_prefix %}{{ path }}">
-          Download resume
-        </a>
-    </div>
-  </div>
-
-{% endif %}
 
 {% endblock bodyBlock %}

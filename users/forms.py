@@ -20,3 +20,10 @@ class StudentForm(forms.ModelForm):
 
 class UploadFile(forms.Form):
     file = forms.FileField()
+
+
+class ResumeForm(forms.ModelForm):
+    class Meta:
+        model = models.Resume
+        fields = ['workExp','education','projects','skills','achievements']
+

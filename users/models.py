@@ -12,3 +12,14 @@ class Student(models.Model):
 
     def __str__(self):
         return self.firstName + " " + self.lastName 
+
+
+class Resume(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    workExp = models.TextField(null = True)
+    education = models.TextField(null = True)
+    projects = models.TextField(null = True)
+    skills = models.TextField(null = True)
+    achievements = models.TextField(null = True)
+
+

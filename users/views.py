@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +7,9 @@ from .forms import UserRegisterForm
 from users import forms
 from .forms import UploadFile
 from django.contrib.auth.decorators import login_required
+
+from .forms import ResumeForm
+from .models import Resume
 
 import os.path
 # Create your views here.
@@ -45,22 +48,38 @@ def handleUploadedFile(f,id):
 #Auth views
 @login_required
 def profile(request):
-    path = 'uploads/{}.pdf'.format(request.user.id)
-    
-    if os.path.exists(path) == False:
-        path = None
-    else:
-        path = '{}.pdf'.format(request.user.id)
-    
-    form = UploadFile()
-    context = {
-        'form':form,
-        'path':path,
-    }
-    id = request.user.id
     if request.method == 'POST':
-        handleUploadedFile(request.FILES['file'],id)
-        return redirect('profile')
+        obj = Resume.objects.all().filter(user = request.user)
+        if obj.exists():
+            obj.delete()
+        
+        resume = ResumeForm()
+        form1 = ResumeForm(request.POST)
+        print(form1)
+        resumeObj = form1.save(commit = False)
+        resumeObj.user = request.user
+        resumeObj.save()
 
+    
 
+    
+    data = Resume.objects.all().filter(user = request.user)
+    if data.exists():
+        data = data[0]
+        resume = ResumeForm(instance = data)
+    else:
+        data = None
+        resume = ResumeForm()
+    
+    print(data)
+    print("*******************************************")
+
+    print("*******************************************")
+    print("*******************************************")
+    print("*******************************************")
+    print("*******************************************")
+
+    context = {
+        'resumeForm':resume,
+    }
     return render(request,'users/profile.html',context)
