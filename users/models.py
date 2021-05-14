@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+
 # Create your models here.
 
 
@@ -16,10 +18,20 @@ class Student(models.Model):
 
 class Resume(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    workExp = models.TextField(null = True)
-    education = models.TextField(null = True)
-    projects = models.TextField(null = True)
-    skills = models.TextField(null = True)
-    achievements = models.TextField(null = True)
+    workExperience = RichTextField(blank = True,null = True)
+    education = RichTextField(blank = True,null = True)
+    projects = RichTextField(blank = True,null = True)
+    skills = RichTextField(blank = True,null = True)
+    achievements = RichTextField(blank = True,null = True)
+
+
+# class Resume(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     workExp = models.TextField(null = True)
+#     education = models.TextField(null = True)
+#     projects = models.TextField(null = True)
+#     skills = models.TextField(null = True)
+#     achievements = models.TextField(null = True)
+
 
 

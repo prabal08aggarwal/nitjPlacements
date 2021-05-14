@@ -11,26 +11,36 @@
 
 
 {% block bodyBlock %}
-<div class="container mt-3">
+
+{% if resumeName is not None  %}
+<div class = "container mt-3 col-lg-6 col-md-8">
+    <div class="row justify-content-center myWhite">
+        <a class="btn btn-outline-success" target="_blank" name = "{{ resumeName }}" href="{% url 'resume' resumeName %}">
+          View Your Resume
+        </a>
+    </div>
+  </div>
+{% endif %}
+
+
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <h3 class = "type text-center"> Create Your Resume</h3>
+        <h3 class = "type text-center"> Create/Update Your Resume</h3>
     </div>
 </div>
 
 
-<div class="container formClass col-lg-8 col-md-8 mt-5 myWhite">
-    <div class="row justify-content-center">
-        <div class="col-8 col-sm-12">
+<div class="container formClass col-lg-6 col-md-8 mt-5 myWhite">
+    <div class="row justify-content-center text-center">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-
+                {{ resumeForm.media }}
                 {{ resumeForm|crispy }}
                 <button class = "btn btn-outline-info mt-4 right" type="submit">
                     Submit
                 </button>
 
             </form>
-        </div>
     </div>
 </div>
 

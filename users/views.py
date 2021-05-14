@@ -9,8 +9,9 @@ from .forms import UploadFile
 from django.contrib.auth.decorators import login_required
 
 from .forms import ResumeForm
-from .models import Resume
+from .models import Resume, Student
 
+from django.contrib.auth.models import User
 import os.path
 # Create your views here.
 
@@ -45,6 +46,29 @@ def handleUploadedFile(f,id):
         for chunk in f.chunks():
             destination.write(chunk)
 
+
+
+def viewResume(request,username):
+    user = User.objects.all().filter(username = username)
+    
+    if user.exists():
+        user = user[0]
+    student = user.student
+    data = Resume.objects.all().filter(user = user)
+    
+    if data.exists():
+        data = data[0]
+    else:
+        data = None
+    
+
+    context = {
+        'student':student,
+        'resume':data
+    }
+    return render(request,'users/resume.html',context)
+    
+
 #Auth views
 @login_required
 def profile(request):
@@ -55,31 +79,33 @@ def profile(request):
         
         resume = ResumeForm()
         form1 = ResumeForm(request.POST)
-        print(form1)
         resumeObj = form1.save(commit = False)
         resumeObj.user = request.user
         resumeObj.save()
 
     
 
-    
+    resumeName = None
+
     data = Resume.objects.all().filter(user = request.user)
     if data.exists():
         data = data[0]
+        resumeName = request.user.username
         resume = ResumeForm(instance = data)
     else:
         data = None
         resume = ResumeForm()
     
-    print(data)
-    print("*******************************************")
+    # print(data)
+    # print("*******************************************")
 
-    print("*******************************************")
-    print("*******************************************")
-    print("*******************************************")
-    print("*******************************************")
+    # print("*******************************************")
+    # print("*******************************************")
+    # print("*******************************************")
+    # print("*******************************************")
 
     context = {
+        'resumeName':resumeName,
         'resumeForm':resume,
     }
     return render(request,'users/profile.html',context)

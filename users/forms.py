@@ -25,5 +25,5 @@ class UploadFile(forms.Form):
 class ResumeForm(forms.ModelForm):
     class Meta:
         model = models.Resume
-        fields = ['workExp','education','projects','skills','achievements']
+        fields = ['workExperience','education','projects','skills','achievements']
 

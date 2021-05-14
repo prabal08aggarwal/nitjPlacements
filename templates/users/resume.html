@@ -1,0 +1,44 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class = "row col-12" >
+                <h4> {{student.firstName}} {{student.lastName}} </h4>
+                
+                <h5> {{student.email}}  &nbsp; &nbsp; {{student.ph_no}} </h5>
+              
+                <h2> Work Experience </h2>
+                <hr>
+                {{ resume.workExperience|safe }}
+
+                <h2> Projects </h2>
+                <hr>
+                {{ resume.projects|safe }}
+
+                <h2> Education </h2>
+                <hr>
+                {{ resume.education|safe }}
+
+                <h2> Skills </h2>
+                <hr>
+                {{ resume.skills|safe }}
+
+                <h2> Achievements </h2>
+                <hr>
+                {{ resume.achievements|safe }}
+
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    </body>
+</html>
