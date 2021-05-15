@@ -4,6 +4,26 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
+programChoice = (
+    ("BTech","Btech"),
+    ("Mtech","Mtech"),
+)
+
+departmentChoice = (
+    ("BT","Bio Technology"),
+    ("che","Chemical"),
+    ("chem","Chemistry"),
+    ("civil","Civil"),
+    ("cse","Computer Science"),
+    ("elec","Electrical"),
+    ("ece","Electronics and Communication"),
+    ("ipe","Industial and Production"),
+    ("it","Information Technology"),
+    ("ice","Instrumentation and Control"),
+    ("maths","Mathematics"),
+    ("phe","Physics"),
+    ("tt","Texttile Technology"),
+)
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -11,6 +31,10 @@ class Student(models.Model):
     lastName = models.CharField(max_length=256)
     email = models.EmailField()
     ph_no = models.CharField(max_length=10)
+    rollNumber = models.IntegerField()
+    program = models.CharField(max_length = 5,default = 'Btech',choices = programChoice)
+    department = models.CharField(max_length = 30,default = 'cse',choices = departmentChoice)
+    year = models.IntegerField(default = 2017)
 
     def __str__(self):
         return self.firstName + " " + self.lastName 

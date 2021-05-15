@@ -15,7 +15,7 @@ class UserRegisterForm(UserCreationForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = models.Student
-        fields = ['firstName','lastName','email','ph_no']
+        fields = ['firstName','lastName','email','rollNumber','program','department','year','ph_no']
 
 
 class UploadFile(forms.Form):
