@@ -3,4 +3,4 @@ from . import models
 # Register your models here.
 
 admin.site.register(models.company)
-admin.site.register(models.jobAppication)
+#admin.site.register(models.jobAppication)
