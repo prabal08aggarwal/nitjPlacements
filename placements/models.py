@@ -39,6 +39,10 @@ class company(models.Model):
     employmentType = models.CharField(choices=empType,max_length=200,null = True,blank=True)
     package = models.IntegerField(null = True,blank = True)
 
+    class Meta:
+        verbose_name = 'Company'
+        verbose_name_plural = 'Companies'
+
     def __str__(self):
         return self.Name 
 
