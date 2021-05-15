@@ -61,7 +61,7 @@
                 <h4>
                     <p class="article-title">Company: {{ post.company }}</a>
                 </h4>
-                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content">{{ post.content|safe }}</p>
             </div>
         </article>
     </div>

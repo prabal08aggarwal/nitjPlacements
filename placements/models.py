@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from users import models as userModel
 from multiselectfield import MultiSelectField
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 programChoice = (
@@ -32,7 +33,7 @@ empType = (
 
 class company(models.Model):
     Name = models.CharField(max_length=256)
-    JobDescription = models.TextField()
+    JobDescription = RichTextField()
     title = models.CharField(max_length=200, null=False)
     departmentsEligible =  MultiSelectField(choices=departmentChoice,default = "Computer Science")
     programEligible = MultiSelectField(choices=programChoice,default = "BTech")

@@ -36,7 +36,7 @@
     <h3> {{ company.title }}</h3>
 
     <p>
-        {{ company.JobDescription }}
+        {{ company.JobDescription|safe }}
     </p>
 </div>
 {% endif %}
