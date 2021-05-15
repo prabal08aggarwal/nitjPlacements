@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import NewQuestionForm, NewReplyForm, NewResponseForm, qFilter
 from django.contrib.auth.decorators import login_required
 from .models import Question, Response
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required
@@ -40,9 +40,13 @@ def homePage(request):
     if authorName is not None and authorName != '':
         qs = qs.filter(author__firstName__icontains = authorName)
 
+    paginator = Paginator(qs,10)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+
     context = {
         'form':form,
-        'questions': qs
+        'questions': page_obj
     }
     return render(request, 'qAndA/homepage.html', context)
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import company, jobAppication
 from django.contrib.auth.decorators import login_required
 from datetime import date
-
+from django.core.paginator import Paginator
 # Create your views here.
 today = date.today()
 
@@ -61,8 +61,12 @@ def index(request):
     print(eligible)
     print(check)
 
+    paginator = Paginator(companies,5)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+
     context = {
-        'companies':companies,
+        'companies':page_obj,
         'appliedTo':applications,
         'eligible':eligible,
     }

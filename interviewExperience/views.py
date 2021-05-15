@@ -6,15 +6,20 @@ from django.contrib.auth.decorators import login_required
 from .forms import newExp
 
 from .forms import filterForm
+
+from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required
 def index(request):
-    form = filterForm()
-    qs = interviewExp.objects.all()
 
     company = request.GET.get('company')
     authorName = request.GET.get('author')
+
+    form = filterForm()
+    qs = interviewExp.objects.all()
+
+    
     
     if company is not None and company != '':
         qs = qs.filter(company__icontains = company)
@@ -22,10 +27,13 @@ def index(request):
     if authorName is not None and authorName != '':
         qs = qs.filter(author__firstName__icontains = authorName)
 
+    paginator = Paginator(qs,5)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
    
     context = {
         'form':form,
-        'interviewExp':qs
+        'interviewExp':page_obj
     }
 
     return render(request,'interviewExperience/index.html',context)

@@ -7,9 +7,11 @@ class newExp(forms.ModelForm):
         fields = ['company','content']
 
 
-class filterForm(forms.ModelForm):
+class filterForm(forms.Form):
     company = forms.CharField(max_length = 100,required = False)
     author = forms.CharField(max_length = 100,required = False)
     class Meta:
         model = interviewExp
         fields = ['company','author']
+
+    
