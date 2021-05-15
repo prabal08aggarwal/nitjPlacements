@@ -5,36 +5,36 @@ from multiselectfield import MultiSelectField
 # Create your models here.
 
 programChoice = (
-    ("BTech","Btech"),
-    ("Mtech","Mtech"),
+    ("BTech","BTech"),
+    ("MTech","MTech"),
 )
 
 departmentChoice = (
-    ("BT","Bio Technology"),
-    ("che","Chemical"),
-    ("chem","Chemistry"),
-    ("civil","Civil"),
-    ("cse","Computer Science"),
-    ("elec","Electrical"),
-    ("ece","Electronics and Communication"),
-    ("ipe","Industial and Production"),
-    ("it","Information Technology"),
-    ("ice","Instrumentation and Control"),
-    ("maths","Mathematics"),
-    ("phe","Physics"),
-    ("tt","Texttile Technology"),
+    ("Bio Technology","Bio Technology"),
+    ("Chemical","Chemical"),
+    ("Chemistry","Chemistry"),
+    ("Civil","Civil"),
+    ("Computer Science","Computer Science"),
+    ("Electrical","Electrical"),
+    ("Electronics and Communication","Electronics and Communication"),
+    ("Industial and Production","Industial and Production"),
+    ("Information Technology","Information Technology"),
+    ("Instrumentation and Control","Instrumentation and Control"),
+    ("Mathematics","Mathematics"),
+    ("Physics","Physics"),
+    ("Texttile Technology","Texttile Technology"),
 )
 
 empType = (
-    ("intern","Internship"),
-    ("fte","Full Time")
+    ("Internship","Internship"),
+    ("Full Time","Full Time")
 )
 
 class company(models.Model):
     Name = models.CharField(max_length=256)
     JobDescription = models.TextField()
     title = models.CharField(max_length=200, null=False)
-    departmentsEligible =  MultiSelectField(choices=departmentChoice,default = "cse")
+    departmentsEligible =  MultiSelectField(choices=departmentChoice,default = "Computer Science")
     programEligible = MultiSelectField(choices=programChoice,default = "BTech")
     employmentType = models.CharField(choices=empType,max_length=200,null = True,blank=True)
     package = models.IntegerField(null = True,blank = True)

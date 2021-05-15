@@ -26,7 +26,9 @@
   
     <p> 
         {{ company.Name }}
-            {% if company.id in appliedTo%}
+            {% if company.id not in eligible %}
+            <button type="button" class="btn btn-outline-success right" disabled> Not Eligible </button>
+            {% elif company.id in appliedTo%}
             <button type="button" class="btn btn-outline-success right" disabled> Applied </button>
             {% else %}
             <a type="button" class="btn btn-outline-success right" name = "{{ company.id }}" href="{% url 'apply' company.id%}"> Apply </a>

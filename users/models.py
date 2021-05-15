@@ -5,24 +5,24 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 programChoice = (
-    ("BTech","Btech"),
-    ("Mtech","Mtech"),
+    ("BTech","BTech"),
+    ("MTech","MTech"),
 )
 
 departmentChoice = (
-    ("BT","Bio Technology"),
-    ("che","Chemical"),
-    ("chem","Chemistry"),
-    ("civil","Civil"),
-    ("cse","Computer Science"),
-    ("elec","Electrical"),
-    ("ece","Electronics and Communication"),
-    ("ipe","Industial and Production"),
-    ("it","Information Technology"),
-    ("ice","Instrumentation and Control"),
-    ("maths","Mathematics"),
-    ("phe","Physics"),
-    ("tt","Texttile Technology"),
+    ("Bio Technology","Bio Technology"),
+    ("Chemical","Chemical"),
+    ("Chemistry","Chemistry"),
+    ("Civil","Civil"),
+    ("Computer Science","Computer Science"),
+    ("Electrical","Electrical"),
+    ("Electronics and Communication","Electronics and Communication"),
+    ("Industial and Production","Industial and Production"),
+    ("Information Technology","Information Technology"),
+    ("Instrumentation and Control","Instrumentation and Control"),
+    ("Mathematics","Mathematics"),
+    ("Physics","Physics"),
+    ("Texttile Technology","Texttile Technology"),
 )
 
 class Student(models.Model):
@@ -32,8 +32,8 @@ class Student(models.Model):
     email = models.EmailField()
     ph_no = models.CharField(max_length=10)
     rollNumber = models.IntegerField()
-    program = models.CharField(max_length = 5,default = 'Btech',choices = programChoice)
-    department = models.CharField(max_length = 30,default = 'cse',choices = departmentChoice)
+    program = models.CharField(max_length = 5,default = 'BTech',choices = programChoice)
+    department = models.CharField(max_length = 40,default = "Computer Science",choices = departmentChoice)
     year = models.IntegerField(default = 2017)
 
     def __str__(self):
