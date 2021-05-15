@@ -14,9 +14,9 @@ import xlwt
 
 class companyAdmin(admin.ModelAdmin):
     list_filter = ('employmentType',)
-    search_fields = ('Name',)
+    search_fields = ('Name','title',)
     actions = ['export',]
-
+    list_display = ('Name','title',)
     def export(self, request, queryset):
         response = HttpResponse(content_type = 'application/ms-excel')
         response['Content-Disposition'] = 'attachment; filename="studentsData.xls"'

@@ -11,12 +11,29 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1','password2']
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        data = email.split('@')
+        
+        if "nitj.ac.in" not in data:
+            raise forms.ValidationError("Use NITJ Account")
+
+        return email
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = models.Student
         fields = ['firstName','lastName','email','rollNumber','program','department','year','ph_no']
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
 
+        data = email.split('@')
+        
+        if "nitj.ac.in" not in data:
+            raise forms.ValidationError("Use NITJ Account")
+
+        return email
 
 class UploadFile(forms.Form):
     file = forms.FileField()
