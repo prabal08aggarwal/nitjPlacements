@@ -50,7 +50,8 @@ class companyAdmin(admin.ModelAdmin):
                 row.append(st.program)
                 row.append(st.department)
                 row.append(st.year)
-
+                row.append("http://127.0.0.1:8000/resume/"+st.user.username)
+                #http://127.0.0.1:8000/resume/prabal/
                 #values_list('firstName', 'lastName', 'email','ph_no','rollNumber','program','department','year')
                 row_num += 1
                 for col_num in range(len(row)):
